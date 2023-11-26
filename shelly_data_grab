@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# meant to be called from cron every minute or so
+
+LOCK='/home/ghz/shelly/shelly.lock'
+WT_DIR='/home/ghz/repos/weather_tools'
+DAT_DIR='/home/ghz/shelly/data'
+TSY="$(date -u "+%Y")"
+TSD="$(date -u "+%F")"
+DEST="/home/ghz/shelly/data/${TSY}"
+
+[ -e "${LOCK}" ] && {
+        echo "$0: lock exists" | logger
+                exit 1
+}
+
+touch "${LOCK}"
+
+[ -d "${DEST}" ] || mkdir -p "${DEST}"
+
+(
+	date -u "+%FT%T%Z"
+	wget -qO - "http://plantlight/rpc/Shelly.GetStatus" \
+	| json_reformat | egrep 'tC|apower|voltage|current'
+) | xargs echo >> "${DEST}/plantlight.${TSD}"
+
+"${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f plantlight
+gnuplot /home/ghz/scripts/shelly.gnuplot
+
+rm "${LOCK}"
