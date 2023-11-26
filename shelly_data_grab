@@ -27,4 +27,8 @@ touch "${LOCK}"
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f plantlight
 gnuplot /home/ghz/shelly/shelly.gnuplot
 
+/usr/local/bin/rsync -ur --delete --timeout=50 \
+	--exclude .git --exclude shelly.lock -e 'ssh -q' \
+	/home/ghz/shelly/ wxs:/wx0/shelly/
+
 rm "${LOCK}"
