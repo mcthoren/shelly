@@ -25,6 +25,6 @@ touch "${LOCK}"
 ) | xargs echo >> "${DEST}/plantlight.${TSD}"
 
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f plantlight
-gnuplot /home/ghz/scripts/shelly.gnuplot
+gnuplot /home/ghz/shelly/shelly.gnuplot
 
 rm "${LOCK}"
