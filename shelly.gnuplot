@@ -32,7 +32,7 @@ set y2label "(A)"
 
 set output '/home/ghz/shelly/plots/light_current.png'
 plot	dat_f_pl using 1:7 title 'Plant light current (A)' with lines lw 2 linecolor rgb "#00bbbb", \
-	dat_f_bk using 1:7 title 'Balocny lights current (A)' with lines lw 2 linecolor rgb "#bb00bb"
+	dat_f_bk using 1:7 title 'Balcony lights current (A)' with lines lw 2 linecolor rgb "#bb00bb"
 
 set ylabel "(W)"
 set y2label "(W)"
@@ -40,8 +40,8 @@ set format y "%.1f"
 set format y2 "%.1f"
 
 set output '/home/ghz/shelly/plots/light_power.png'
-plot	dat_f_pl using 1:3 title 'Plant Light Power (W)' with lines lw 2 linecolor rgb "#0000bb", \
-	dat_f_bk using 1:3 title 'Plant Light Power (W)' with lines lw 2 linecolor rgb "#00aaaa"
+plot	dat_f_pl using 1:3 title 'Plant light power (W)' with lines lw 2 linecolor rgb "#0000bb", \
+	dat_f_bk using 1:3 title 'Balcony lights power (W)' with lines lw 2 linecolor rgb "#00aaaa"
 
 set ylabel "(°C)"
 set y2label "(°C)"
