@@ -24,7 +24,15 @@ touch "${LOCK}"
 	| json_reformat | egrep 'tC|apower|voltage|current'
 ) | xargs echo >> "${DEST}/plantlight.${TSD}"
 
+(
+	date -u "+%FT%T%Z"
+	wget -qO - "http://bklight/rpc/Shelly.GetStatus" \
+	| json_reformat | egrep 'tC|apower|voltage|current'
+) | xargs echo >> "${DEST}/bklight.${TSD}"
+
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f plantlight
+"${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f bklight
+
 gnuplot /home/ghz/shelly/shelly.gnuplot
 
 /usr/local/bin/rsync -ur --delete --timeout=50 \

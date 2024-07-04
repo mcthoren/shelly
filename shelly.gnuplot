@@ -17,10 +17,12 @@ set format y2 "%.1f"
 set ylabel "(VAC)"
 set y2label "(VAC)"
 
-dat_f='/home/ghz/shelly/data/plantlight.48_hours'
+dat_f_pl='/home/ghz/shelly/data/plantlight.48_hours'
+dat_f_bk='/home/ghz/shelly/data/bklight.48_hours'
 
-set output '/home/ghz/shelly/plots/plant_light_line_voltage.png'
-plot dat_f using 1:5 title 'Line Voltage (VAC)' with lines lw 2 linecolor rgb "#dddd00"
+set output '/home/ghz/shelly/plots/light_line_voltage.png'
+plot	dat_f_pl using 1:5 title 'Plant light voltage (VAC)' with lines lw 3 linecolor rgb "#dddd00", \
+	dat_f_bk using 1:5 title 'Balcony lights voltage (VAC)' with lines lw 1 linecolor rgb "#00dd00"
 
 set format y "%.3f"
 set format y2 "%.3f"
@@ -28,19 +30,22 @@ set format y2 "%.3f"
 set ylabel "(A)"
 set y2label "(A)"
 
-set output '/home/ghz/shelly/plots/plant_light_current.png'
-plot dat_f using 1:7 title 'Plant Light Current (A)' with lines lw 2 linecolor rgb "#00bbbb"
+set output '/home/ghz/shelly/plots/light_current.png'
+plot	dat_f_pl using 1:7 title 'Plant light current (A)' with lines lw 2 linecolor rgb "#00bbbb", \
+	dat_f_bk using 1:7 title 'Balocny lights current (A)' with lines lw 2 linecolor rgb "#bb00bb"
 
 set ylabel "(W)"
 set y2label "(W)"
 set format y "%.1f"
 set format y2 "%.1f"
 
-set output '/home/ghz/shelly/plots/plant_light_power.png'
-plot dat_f using 1:3 title 'Plant Light Power (W)' with lines lw 2 linecolor rgb "#0000bb"
+set output '/home/ghz/shelly/plots/light_power.png'
+plot	dat_f_pl using 1:3 title 'Plant Light Power (W)' with lines lw 2 linecolor rgb "#0000bb", \
+	dat_f_bk using 1:3 title 'Plant Light Power (W)' with lines lw 2 linecolor rgb "#00aaaa"
 
 set ylabel "(°C)"
 set y2label "(°C)"
 
-set output '/home/ghz/shelly/plots/plant_light_shelly_temp.png'
-plot dat_f using 1:9 title 'Plant Light Shelly Temp (°C)' with lines lw 2 linecolor rgb "#ff0000"
+set output '/home/ghz/shelly/plots/light_shelly_temp.png'
+plot	dat_f_pl using 1:9 title 'Plant light shelly temp (°C)' with lines lw 2 linecolor rgb "#ff0000", \
+	dat_f_bk using 1:9 title 'Balcony lights shelly temp (°C)' with lines lw 2 linecolor rgb "#0000ff"
