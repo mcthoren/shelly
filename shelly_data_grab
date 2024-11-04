@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # meant to be called from cron every minute or so
 
 LOCK='/home/ghz/shelly/shelly.lock'
@@ -29,6 +28,13 @@ touch "${LOCK}"
 	wget -qO - "http://bklight/rpc/Shelly.GetStatus" \
 	| json_reformat | egrep 'tC|apower|voltage|current'
 ) | xargs echo >> "${DEST}/bklight.${TSD}"
+
+(
+	date -u "+%FT%T%Z"
+	wget -qO - "http://pprobe-000/rpc/Shelly.GetStatus" \
+	| jq '."pm1:0"| (.voltage | tostring) + "VAC " + (.current | tostring) \
+	+ "A " + (.apower | tostring) + "W " + (.freq | tostring) + "Hz"'
+) >> "${DEST}/pprobe-000.${TSD}"
 
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f plantlight
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f bklight
