@@ -32,12 +32,12 @@ touch "${LOCK}"
 (
 	date -u "+%FT%T%Z"
 	wget -qO - "http://pprobe-000/rpc/Shelly.GetStatus" \
-	| jq '."pm1:0"| (.voltage | tostring) + "VAC " + (.current | tostring) \
-	+ "A " + (.apower | tostring) + "W " + (.freq | tostring) + "Hz"'
-) >> "${DEST}/pprobe-000.${TSD}"
+	| jq | egrep 'apower|voltage|current|freq'
+) | xargs echo >> "${DEST}/pprobe-000.${TSD}"
 
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f plantlight
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f bklight
+"${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f pprobe-000
 
 gnuplot /home/ghz/shelly/shelly.gnuplot
 
