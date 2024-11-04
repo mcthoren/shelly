@@ -51,6 +51,8 @@ plot	dat_f_pl using 1:9 title 'Plant light shelly temp (°C)' with lines lw 2 li
 
 set ylabel "(Hz)"
 set y2label "(Hz)"
+set format y "%.2f"
+set format y2 "%.2f"
 # set yrange ["49.5":"50.5"]
 set output '/home/ghz/shelly/plots/light_shelly_freq.png'
 plot	dat_f_pp000 using 1:9 title 'Apartment lights freq (Hz)' with lines lw 2 linecolor rgb "#ff0000"
