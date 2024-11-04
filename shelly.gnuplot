@@ -55,4 +55,4 @@ set format y "%.2f"
 set format y2 "%.2f"
 # set yrange ["49.5":"50.5"]
 set output '/home/ghz/shelly/plots/light_shelly_freq.png'
-plot	dat_f_pp000 using 1:9 title 'Apartment lights freq (Hz)' with lines lw 2 linecolor rgb "#ff0000"
+plot dat_f_pp000 using 1:9 title 'Apartment lights freq bezier smoothed (Hz)' with lines lw 2 linecolor rgb "#ff0000" smooth bezier
