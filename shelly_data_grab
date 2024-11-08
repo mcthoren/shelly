@@ -13,25 +13,32 @@ DEST="/home/ghz/shelly/data/${TSY}"
                 exit 1
 }
 
+wdl() {
+	# Wget DownLoad so i can change options in one place
+	# -t: retries [count]
+	# -T: network timeout [s]
+	wget -t 2 -T 8 -qO - "${@}"
+}
+
 touch "${LOCK}"
 
 [ -d "${DEST}" ] || mkdir -p "${DEST}"
 
 (
 	date -u "+%FT%T%Z"
-	wget -qO - "http://plantlight/rpc/Shelly.GetStatus" \
+	wdl "http://plantlight/rpc/Shelly.GetStatus" \
 	| json_reformat | egrep 'tC|apower|voltage|current'
 ) | xargs echo >> "${DEST}/plantlight.${TSD}"
 
 (
 	date -u "+%FT%T%Z"
-	wget -qO - "http://bklight/rpc/Shelly.GetStatus" \
+	wdl "http://bklight/rpc/Shelly.GetStatus" \
 	| json_reformat | egrep 'tC|apower|voltage|current'
 ) | xargs echo >> "${DEST}/bklight.${TSD}"
 
 (
 	date -u "+%FT%T%Z"
-	wget -qO - "http://pprobe-000/rpc/Shelly.GetStatus" \
+	wdl "http://pprobe-000/rpc/Shelly.GetStatus" \
 	| jq | egrep 'apower|voltage|current|freq'
 ) | xargs echo >> "${DEST}/pprobe-000.${TSD}"
 
