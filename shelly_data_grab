@@ -17,7 +17,7 @@ wdl() {
 	# Wget DownLoad so i can change options in one place
 	# -t: retries [count]
 	# -T: network timeout [s]
-	wget -t 2 -T 8 -qO - "${@}"
+	wget -t 2 -T 6 -qO - "${@}"
 }
 
 touch "${LOCK}"
@@ -42,9 +42,16 @@ touch "${LOCK}"
 	| jq | egrep 'apower|voltage|current|freq'
 ) | xargs echo >> "${DEST}/pprobe-000.${TSD}"
 
+(
+	date -u "+%FT%T%Z"
+	wdl "http://pprobe-001/rpc/Shelly.GetStatus" \
+	| jq | egrep 'apower|voltage|current|freq'
+) | xargs echo >> "${DEST}/pprobe-001.${TSD}"
+
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f plantlight
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f bklight
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f pprobe-000
+"${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f pprobe-001
 
 gnuplot /home/ghz/shelly/shelly.gnuplot
 

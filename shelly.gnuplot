@@ -14,6 +14,7 @@ set term pngcairo size 1900, 512 font ",10"
 dat_f_pl='/home/ghz/shelly/data/plantlight.48_hours'
 dat_f_bk='/home/ghz/shelly/data/bklight.48_hours'
 dat_f_pp000='/home/ghz/shelly/data/pprobe-000.48_hours'
+dat_f_pp001='/home/ghz/shelly/data/pprobe-001.48_hours'
 
 set format y "%.1f"
 set format y2 "%.1f"
@@ -22,25 +23,34 @@ set y2label "(VAC)"
 set output '/home/ghz/shelly/plots/light_line_voltage.png'
 plot	dat_f_pl using 1:5 title 'Plant light voltage (VAC)' with lines lw 3 linecolor rgb "#dddd00", \
 	dat_f_bk using 1:5 title 'Balcony lights voltage (VAC)' with lines lw 1 linecolor rgb "#00dd00", \
-	dat_f_pp000 using 1:3 title 'Apartment lights voltage (VAC)' with lines lw 1 linecolor rgb "#0000dd"
+	dat_f_pp000 using 1:3 title 'Apt lights voltage (VAC)' with lines lw 1 linecolor rgb "#0000dd", \
+	dat_f_pp001 using 1:3 title 'Apt main outlets voltage (VAC)' with lines lw 1 linecolor rgb "#00bbbb"
 
 set format y "%.3f"
 set format y2 "%.3f"
 set ylabel "(A)"
 set y2label "(A)"
 set output '/home/ghz/shelly/plots/light_current.png'
-plot	dat_f_pp000 using 1:5 title 'Apartment lights current (A)' with lines lw 2 linecolor rgb "#00bb00", \
+plot	dat_f_pp000 using 1:5 title 'Apt lights current (A)' with lines lw 2 linecolor rgb "#00bb00", \
 	dat_f_pl using 1:7 title 'Plant light current (A)' with lines lw 2 linecolor rgb "#0000bb", \
 	dat_f_bk using 1:7 title 'Balcony lights current (A)' with lines lw 2 linecolor rgb "#00aaaa"
+
+set format y "%.2f"
+set format y2 "%.2f"
+set output '/home/ghz/shelly/plots/main_outlet_current.png'
+plot	dat_f_pp001 using 1:5 title 'Apt main outlets current (A)' with lines lw 2 linecolor rgb "#00bbbb"
 
 set ylabel "(W)"
 set y2label "(W)"
 set format y "%.1f"
 set format y2 "%.1f"
 set output '/home/ghz/shelly/plots/light_power.png'
-plot	dat_f_pp000 using 1:7 title 'Apartment lights power (W)' with lines lw 2 linecolor rgb "#00bb00", \
+plot	dat_f_pp000 using 1:7 title 'Apt lights power (W)' with lines lw 2 linecolor rgb "#00bb00", \
 	dat_f_pl using 1:3 title 'Plant light power (W)' with lines lw 2 linecolor rgb "#0000bb", \
 	dat_f_bk using 1:3 title 'Balcony lights power (W)' with lines lw 2 linecolor rgb "#00aaaa"
+
+set output '/home/ghz/shelly/plots/main_outlet_power.png'
+plot	dat_f_pp001 using 1:7 title 'Apt main outlets power (W)' with lines lw 2 linecolor rgb "#00bbbb"
 
 set ylabel "(°C)"
 set y2label "(°C)"
@@ -55,4 +65,5 @@ set format y "%.2f"
 set format y2 "%.2f"
 # set yrange ["49.5":"50.5"]
 set output '/home/ghz/shelly/plots/light_shelly_freq.png'
-plot dat_f_pp000 using 1:9 title 'Apartment lights freq bezier smoothed (Hz)' with lines lw 2 linecolor rgb "#00bb00" smooth bezier
+plot	dat_f_pp000 using 1:9 title 'Apt lights freq bezier smoothed (Hz)' with lines lw 4 linecolor rgb "#00bb00" smooth bezier, \
+	dat_f_pp001 using 1:9 title 'Apt main outlets freq bezier smoothed (Hz)' with lines lw 2 linecolor rgb "#000099" smooth bezier
