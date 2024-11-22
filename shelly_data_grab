@@ -48,10 +48,31 @@ touch "${LOCK}"
 	| jq | egrep 'apower|voltage|current|freq'
 ) | xargs echo >> "${DEST}/pprobe-001.${TSD}"
 
+(
+	date -u "+%FT%T%Z"
+	wdl "http://pprobe-002/rpc/Shelly.GetStatus" \
+	| jq | egrep 'apower|voltage|current|freq'
+) | xargs echo >> "${DEST}/pprobe-002.${TSD}"
+
+(
+	date -u "+%FT%T%Z"
+	wdl "http://pprobe-003/rpc/Shelly.GetStatus" \
+	| jq | egrep 'apower|voltage|current|freq'
+) | xargs echo >> "${DEST}/pprobe-003.${TSD}"
+
+(
+	date -u "+%FT%T%Z"
+	wdl "http://pprobe-004/rpc/Shelly.GetStatus" \
+	| jq | egrep 'apower|voltage|current|freq'
+) | xargs echo >> "${DEST}/pprobe-004.${TSD}"
+
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f plantlight
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f bklight
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f pprobe-000
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f pprobe-001
+"${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f pprobe-002
+"${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f pprobe-003
+"${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f pprobe-004
 
 gnuplot /home/ghz/shelly/shelly.gnuplot
 
