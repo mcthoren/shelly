@@ -27,13 +27,13 @@ touch "${LOCK}"
 (
 	date -u "+%FT%T%Z"
 	wdl "http://plantlight/rpc/Shelly.GetStatus" \
-	| json_reformat | egrep 'tC|apower|voltage|current'
+	| jq | egrep 'tC|apower|voltage|current'
 ) | xargs echo >> "${DEST}/plantlight.${TSD}"
 
 (
 	date -u "+%FT%T%Z"
 	wdl "http://bklight/rpc/Shelly.GetStatus" \
-	| json_reformat | egrep 'tC|apower|voltage|current'
+	| jq | egrep 'tC|apower|voltage|current'
 ) | xargs echo >> "${DEST}/bklight.${TSD}"
 
 (
