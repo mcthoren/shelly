@@ -108,4 +108,4 @@ plot	dat_f_pp000 using 1:9 title 'apt lights freq bezier smoothed (Hz)' with lin
 	dat_f_pp003 using 1:9 title 'kitchen outlets - sink side freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
 	dat_f_pp004 using 1:9 title 'washing machine freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
 	dat_f_pp005 using 1:9 title 'bathroom razor freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
-	dat_f_pp006 using 1:9 title 'throom outlets freq bezier smoothed (Hz)' with lines lw 2 smooth bezier
+	dat_f_pp006 using 1:9 title 'bathroom outlets freq bezier smoothed (Hz)' with lines lw 2 smooth bezier
