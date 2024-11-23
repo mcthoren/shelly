@@ -18,6 +18,8 @@ dat_f_pp001='/home/ghz/shelly/data/pprobe-001.48_hours'
 dat_f_pp002='/home/ghz/shelly/data/pprobe-002.48_hours'
 dat_f_pp003='/home/ghz/shelly/data/pprobe-003.48_hours'
 dat_f_pp004='/home/ghz/shelly/data/pprobe-004.48_hours'
+dat_f_pp005='/home/ghz/shelly/data/pprobe-005.48_hours'
+dat_f_pp006='/home/ghz/shelly/data/pprobe-006.48_hours'
 
 set format y "%.1f"
 set format y2 "%.1f"
@@ -25,27 +27,33 @@ set ylabel "(VAC)"
 set y2label "(VAC)"
 set output '/home/ghz/shelly/plots/light_line_voltage.png'
 plot	dat_f_pl using 1:5 title 'plant light voltage (VAC)' with lines lw 3 linecolor rgb "#dddd00", \
-	dat_f_bk using 1:5 title 'balcony lights voltage (VAC)' with lines lw 1 linecolor rgb "#00dd00", \
-	dat_f_pp000 using 1:3 title 'apt lights voltage (VAC)' with lines lw 1 linecolor rgb "#0000dd", \
-	dat_f_pp001 using 1:3 title 'main outlets voltage (VAC)' with lines lw 1 linecolor rgb "#00bbbb", \
-	dat_f_pp002 using 1:3 title 'kitchen outlets - window side (VAC)' with lines lw 1 linecolor rgb "#bb0000", \
-	dat_f_pp003 using 1:3 title 'kitchen outlets - sink side (VAC)' with lines lw 1 linecolor rgb "#000000", \
-	dat_f_pp004 using 1:3 title 'washing machine (VAC)' with lines lw 1 linecolor rgb "#bb00bb"
+	dat_f_bk using 1:5 title 'balcony lights voltage (VAC)' with lines lw 1 linecolor rgb "#00dd00"
+
+set output '/home/ghz/shelly/plots/pprobe_line_voltage.png'
+plot dat_f_pp000 using 1:3 title 'apt lights voltage (VAC)' with lines lw 1, \
+	dat_f_pp001 using 1:3 title 'main outlets voltage (VAC)' with lines lw 1, \
+	dat_f_pp002 using 1:3 title 'kitchen outlets - window side (VAC)' with lines lw 1, \
+	dat_f_pp003 using 1:3 title 'kitchen outlets - sink side (VAC)' with lines lw 1, \
+	dat_f_pp004 using 1:3 title 'washing machine (VAC)' with lines lw 1, \
+	dat_f_pp005 using 1:3 title 'bathroom razor (VAC)' with lines lw 1, \
+	dat_f_pp006 using 1:3 title 'bathroom outlets (VAC)' with lines lw 1
 
 set format y "%.3f"
 set format y2 "%.3f"
 set ylabel "(A)"
 set y2label "(A)"
 set output '/home/ghz/shelly/plots/light_current.png'
-plot	dat_f_pp000 using 1:5 title 'ppt lights current (A)' with lines lw 2 linecolor rgb "#00bb00", \
-	dat_f_pp004 using 1:5 title 'washing machine (A)' with lines lw 2 linecolor rgb "#bb00bb", \
-	dat_f_pl using 1:7 title 'plant light current (A)' with lines lw 2 linecolor rgb "#0000bb", \
-	dat_f_bk using 1:7 title 'balcony lights current (A)' with lines lw 2 linecolor rgb "#00aaaa"
+plot	dat_f_pp000 using 1:5 title 'apt lights current (A)' with lines lw 2, \
+	dat_f_pp005 using 1:5 title 'bathroom razor current (A)' with lines lw 2, \
+	dat_f_pp006 using 1:5 title 'bathroom outlets current (A)' with lines lw 2, \
+	dat_f_pl using 1:7 title 'plant light current (A)' with lines lw 2, \
+	dat_f_bk using 1:7 title 'balcony lights current (A)' with lines lw 2
 
 set format y "%.2f"
 set format y2 "%.2f"
 set output '/home/ghz/shelly/plots/main_outlet_current.png'
 plot	dat_f_pp001 using 1:5 title 'main outlets current (A)' with lines lw 2 linecolor rgb "#00bbbb", \
+	dat_f_pp004 using 1:5 title 'washing machine (A)' with lines lw 2 linecolor rgb "#bb00bb", \
 	dat_f_pp003 using 1:5 title 'kitchen outlets - sink side (A)' with lines lw 1 linecolor rgb "#000000", \
 	dat_f_pp002 using 1:5 title 'kitchen outlets - window side (A)' with lines lw 2 linecolor rgb "#bb0000"
 
@@ -54,14 +62,16 @@ set y2label "(W)"
 set format y "%.1f"
 set format y2 "%.1f"
 set output '/home/ghz/shelly/plots/light_power.png'
-plot	dat_f_pp000 using 1:7 title 'apt lights power (W)' with lines lw 2 linecolor rgb "#00bb00", \
-	dat_f_pp004 using 1:7 title 'washing machine (W)' with lines lw 2 linecolor rgb "#bb00bb", \
-	dat_f_pl using 1:3 title 'plant light power (W)' with lines lw 2 linecolor rgb "#0000bb", \
-	dat_f_bk using 1:3 title 'balcony lights power (W)' with lines lw 2 linecolor rgb "#00aaaa"
+plot	dat_f_pp000 using 1:7 title 'apt lights power (W)' with lines lw 2, \
+	dat_f_pp005 using 1:7 title 'bathroom razor power (W)' with lines lw 2, \
+	dat_f_pp006 using 1:7 title 'bathroom outlets power (W)' with lines lw 2, \
+	dat_f_pl using 1:3 title 'plant light power (W)' with lines lw 2, \
+	dat_f_bk using 1:3 title 'balcony lights power (W)' with lines lw 2
 
 set output '/home/ghz/shelly/plots/main_outlet_power.png'
 plot	dat_f_pp001 using 1:7 title 'main outlets power (W)' with lines lw 2 linecolor rgb "#00bbbb", \
 	dat_f_pp003 using 1:7 title 'kitchen outlets - sink side (W)' with lines lw 1 linecolor rgb "#000000", \
+	dat_f_pp004 using 1:7 title 'washing machine (W)' with lines lw 2 linecolor rgb "#bb00bb", \
 	dat_f_pp002 using 1:7 title 'kitchen outlets - window side (W)' with lines lw 2 linecolor rgb "#bb0000"
 
 set ylabel "(°C)"
@@ -77,8 +87,10 @@ set format y "%.2f"
 set format y2 "%.2f"
 # set yrange ["49.5":"50.5"]
 set output '/home/ghz/shelly/plots/light_shelly_freq.png'
-plot	dat_f_pp000 using 1:9 title 'apt lights freq bezier smoothed (Hz)' with lines lw 4 linecolor rgb "#00bb00" smooth bezier, \
-	dat_f_pp001 using 1:9 title 'main outlets freq bezier smoothed (Hz)' with lines lw 2 linecolor rgb "#000099" smooth bezier, \
-	dat_f_pp002 using 1:9 title 'kitchen outlets - window side freq bezier smoothed (Hz)' with lines lw 2 linecolor rgb "#bb0000" smooth bezier, \
-	dat_f_pp003 using 1:9 title 'kitchen outlets - sink side freq bezier smoothed (Hz)' with lines lw 2 linecolor rgb "#000000" smooth bezier, \
-	dat_f_pp004 using 1:9 title 'washing machine freq bezier smoothed (Hz)' with lines lw 2 linecolor rgb "#bb00bb" smooth bezier
+plot	dat_f_pp000 using 1:9 title 'apt lights freq bezier smoothed (Hz)' with lines lw 4 smooth bezier, \
+	dat_f_pp001 using 1:9 title 'main outlets freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
+	dat_f_pp002 using 1:9 title 'kitchen outlets - window side freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
+	dat_f_pp003 using 1:9 title 'kitchen outlets - sink side freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
+	dat_f_pp004 using 1:9 title 'washing machine freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
+	dat_f_pp005 using 1:9 title 'bathroom razor freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
+	dat_f_pp006 using 1:9 title 'throom outlets freq bezier smoothed (Hz)' with lines lw 2 smooth bezier
