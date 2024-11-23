@@ -67,7 +67,7 @@ plot	dat_f_pp001 using 1:5 title 'main outlets current (A)' with lines lw 2 line
 	dat_f_pp002 using 1:5 title 'kitchen outlets - window side (A)' with lines lw 2 linecolor rgb C_06
 
 set output '/home/ghz/shelly/plots/total_current.png'
-plot	dat_f_total using 1:4 title 'main outlets current (A)' with lines lw 2 linecolor rgb C_06
+plot	dat_f_total using 1:4 title 'total current (A)' with lines lw 2 linecolor rgb C_06
 
 set ylabel "(W)"
 set y2label "(W)"
