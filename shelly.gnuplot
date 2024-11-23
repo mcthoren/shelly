@@ -20,6 +20,7 @@ dat_f_pp003='/home/ghz/shelly/data/pprobe-003.48_hours'
 dat_f_pp004='/home/ghz/shelly/data/pprobe-004.48_hours'
 dat_f_pp005='/home/ghz/shelly/data/pprobe-005.48_hours'
 dat_f_pp006='/home/ghz/shelly/data/pprobe-006.48_hours'
+dat_f_total='/home/ghz/shelly/data/pprobe-total.48_hours'
 
 C_00="#00ff00"
 C_01="#00ffc0"
@@ -65,6 +66,9 @@ plot	dat_f_pp001 using 1:5 title 'main outlets current (A)' with lines lw 2 line
 	dat_f_pp003 using 1:5 title 'kitchen outlets - sink side (A)' with lines lw 1 linecolor rgb C_05, \
 	dat_f_pp002 using 1:5 title 'kitchen outlets - window side (A)' with lines lw 2 linecolor rgb C_06
 
+set output '/home/ghz/shelly/plots/total_current.png'
+plot	dat_f_total using 1:4 title 'main outlets current (A)' with lines lw 2 linecolor rgb C_06
+
 set ylabel "(W)"
 set y2label "(W)"
 set format y "%.1f"
@@ -81,6 +85,9 @@ plot	dat_f_pp001 using 1:7 title 'main outlets power (W)' with lines lw 2 lineco
 	dat_f_pp003 using 1:7 title 'kitchen outlets - sink side (W)' with lines lw 1 linecolor rgb C_05, \
 	dat_f_pp004 using 1:7 title 'washing machine (W)' with lines lw 2 linecolor rgb C_04, \
 	dat_f_pp002 using 1:7 title 'kitchen outlets - window side (W)' with lines lw 2 linecolor rgb C_06
+
+set output '/home/ghz/shelly/plots/total_power.png'
+plot	dat_f_total using 1:2 title 'total power (W)' with lines lw 2 linecolor rgb C_03
 
 set ylabel "(°C)"
 set y2label "(°C)"
