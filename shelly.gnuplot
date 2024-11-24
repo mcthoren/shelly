@@ -30,6 +30,8 @@ C_04="#00c0ff"
 C_05="#00c0aa"
 C_06="#6000ff"
 C_07="#0000ff"
+C_08="#cc66ff"
+C_09="#008000"
 
 set format y "%.1f"
 set format y2 "%.1f"
@@ -53,11 +55,11 @@ set format y2 "%.3f"
 set ylabel "(A)"
 set y2label "(A)"
 set output '/home/ghz/shelly/plots/light_current.png'
-plot	dat_f_pp000 using 1:5 title 'apt lights current (A)' with lines lw 2 linecolor rgb C_06, \
+plot	dat_f_pp000 using 1:5 title 'apt lights current (A)' with lines lw 2 linecolor rgb C_09, \
 	dat_f_pp005 using 1:5 title 'bathroom razor current (A)' with lines lw 2 linecolor rgb C_01, \
 	dat_f_pp006 using 1:5 title 'bathroom outlets current (A)' with lines lw 2 linecolor rgb C_02, \
 	dat_f_pl using 1:7 title 'plant light current (A)' with lines lw 2 linecolor rgb C_03, \
-	dat_f_pp003 using 1:5 title 'kitchen outlets - sink side current (A)' with lines lw 1 linecolor rgb C_07, \
+	dat_f_pp003 using 1:5 title 'kitchen outlets - sink side current (A)' with lines lw 2 linecolor rgb C_07, \
 	dat_f_bk using 1:7 title 'balcony lights current (A)' with lines lw 2 linecolor rgb C_04
 
 set format y "%.2f"
@@ -75,8 +77,8 @@ set y2label "(W)"
 set format y "%.1f"
 set format y2 "%.1f"
 set output '/home/ghz/shelly/plots/light_power.png'
-plot	dat_f_pp000 using 1:7 title 'apt lights power (W)' with lines lw 2 linecolor rgb C_06, \
-	dat_f_pp003 using 1:7 title 'kitchen outlets - sink side power (W)' with lines lw 1 linecolor rgb C_07, \
+plot	dat_f_pp000 using 1:7 title 'apt lights power (W)' with lines lw 2 linecolor rgb C_09, \
+	dat_f_pp003 using 1:7 title 'kitchen outlets - sink side power (W)' with lines lw 2 linecolor rgb C_07, \
 	dat_f_pp005 using 1:7 title 'bathroom razor power (W)' with lines lw 2 linecolor rgb C_01, \
 	dat_f_pp006 using 1:7 title 'bathroom outlets power (W)' with lines lw 2 linecolor rgb C_02, \
 	dat_f_pl using 1:3 title 'plant light power (W)' with lines lw 2 linecolor rgb C_03, \
