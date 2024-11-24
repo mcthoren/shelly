@@ -7,6 +7,7 @@ DAT_DIR='/home/ghz/shelly/data'
 TSY="$(date -u "+%Y")"
 TSD="$(date -u "+%F")"
 DEST="/home/ghz/shelly/data/${TSY}"
+TOT_E="${DAT_DIR}/total_energy"
 
 [ -e "${LOCK}" ] && {
         echo "$0: lock exists" | logger
@@ -55,6 +56,18 @@ done
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f plantlight
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f bklight
 "${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f pprobe-total
+
+# create the file if it doesn't exist. this makes first runs smoother even if it is a bit of extra work.
+[ -f "${TOT_E}" ] || touch "${TOT_E}"
+grep -q "${TSD}" "${TOT_E}" || echo "${TSD}" >> "${TOT_E}"
+
+# the sum total energy from instantaneous minute measurements should give us
+# a decent approximation of energy usage in watt * minutes.
+# devide by 60 to give us watt * hour and then by 1000 to give us kWh
+TOT="$(awk 'BEGIN {p_tot = 0} {p_tot += $2} END {print p_tot / 60 / 1000, "kWh"}' ${DEST}/pprobe-total.${TSD})"
+
+# update as we go so we can watch our usage climb per day
+sed -ie "s/^${TSD}.*$/${TSD} ${TOT}/" "${TOT_E}"
 
 gnuplot /home/ghz/shelly/shelly.gnuplot
 

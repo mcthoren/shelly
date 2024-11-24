@@ -21,6 +21,7 @@ dat_f_pp004='/home/ghz/shelly/data/pprobe-004.48_hours'
 dat_f_pp005='/home/ghz/shelly/data/pprobe-005.48_hours'
 dat_f_pp006='/home/ghz/shelly/data/pprobe-006.48_hours'
 dat_f_total='/home/ghz/shelly/data/pprobe-total.48_hours'
+dat_f_total_e='/home/ghz/shelly/data/total_energy'
 
 C_00="#00ff00"
 C_01="#00ffc0"
@@ -98,7 +99,6 @@ set output '/home/ghz/shelly/plots/light_shelly_temp.png'
 plot	dat_f_pl using 1:9 title 'plant light shelly temp (°C)' with lines lw 2 linecolor rgb "#0000bb", \
 	dat_f_bk using 1:9 title 'balcony lights shelly temp (°C)' with lines lw 2 linecolor rgb "#00aaaa"
 
-
 set ylabel "(Hz)"
 set y2label "(Hz)"
 set format y "%.2f"
@@ -112,3 +112,14 @@ plot	dat_f_pp000 using 1:9 title 'apt lights freq bezier smoothed (Hz)' with lin
 	dat_f_pp004 using 1:9 title 'washing machine freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
 	dat_f_pp005 using 1:9 title 'bathroom razor freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
 	dat_f_pp006 using 1:9 title 'bathroom outlets freq bezier smoothed (Hz)' with lines lw 2 smooth bezier
+
+set ylabel "(kWh)"
+set y2label "(kWh)"
+set format y "%.2f"
+set format y2 "%.2f"
+set format x "%F"
+set xtics out
+set ytics out
+set style fill solid 0.50 noborder
+set output '/home/ghz/shelly/plots/total_e_day.png'
+plot dat_f_total_e using 1:2 title 'total daily energy use (kWh)' with boxes linecolor rgb "#0000ff"
