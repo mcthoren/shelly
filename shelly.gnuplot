@@ -4,8 +4,8 @@ set y2tics
 set link y2
 set mytics
 set key outside below
-set xlabel "Time (UTC)" offset 0.0, -2.6;
-set xdata time;
+set xlabel "Time (UTC)" offset 0.0, -2.6
+set xdata time
 set format x "%F\n%TZ"
 set timefmt "%Y-%m-%dT%H:%M:%S%Z"
 set grid
@@ -118,7 +118,9 @@ set y2label "(kWh)"
 set format y "%.2f"
 set format y2 "%.2f"
 set format x "%F"
-set xtics out
+set yrange ["0":]
+set xtics 86400 out
+set grid mxtics
 set ytics out
 set style fill solid 0.50 noborder
 set output '/home/ghz/shelly/plots/total_e_day.png'
