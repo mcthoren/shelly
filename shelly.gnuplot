@@ -76,7 +76,7 @@ plot	dat_f_pp001 using 1:5 title 'main outlets current (A)' with lines lw 2 line
 
 set title "Total Current over the last \\~48h"
 set output '/home/ghz/shelly/plots/total_current.png'
-plot	dat_f_total using 1:4 title 'total current (A)' with lines lw 2 linecolor rgb C_06
+plot	dat_f_total using 1:4 title 'total current (A)' with lines lw 1 linecolor rgb C_06
 
 set title "Low Current Circuit Power over the last \\~48h"
 set ylabel "(W)"
@@ -99,7 +99,7 @@ plot	dat_f_pp001 using 1:7 title 'main outlets power (W)' with lines lw 2 lineco
 
 set title "Total Power over the last \\~48h"
 set output '/home/ghz/shelly/plots/total_power.png'
-plot	dat_f_total using 1:2 title 'total power (W)' with lines lw 2 linecolor rgb C_03
+plot	dat_f_total using 1:2 title 'total power (W)' with lines lw 1 linecolor rgb C_03
 
 set title "End Device Temp over the last \\~48h"
 set ylabel "(°C)"
