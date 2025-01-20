@@ -54,8 +54,8 @@ plot dat_f_pp000 using 1:3 title 'apt lights voltage (VAC)' with lines lw 1 line
 	dat_f_pp006 using 1:3 title 'bathroom outlets voltage (VAC)' with lines lw 1 linecolor rgb C_06
 
 set title "Low Current Circuit Current over the last \\~48h"
-set format y "%.3f"
-set format y2 "%.3f"
+set format y "%.2f"
+set format y2 "%.2f"
 set ylabel "(A)"
 set y2label "(A)"
 set output '/home/ghz/shelly/plots/light_current.png'
@@ -67,8 +67,8 @@ plot	dat_f_pp006 using 1:5 title 'bathroom outlets current (A)' with lines lw 2 
 	dat_f_bk using 1:7 title 'balcony lights current (A)' with lines lw 2 linecolor rgb C_04
 
 set title "High Current Circuit Current over the last \\~48h"
-set format y "%.2f"
-set format y2 "%.2f"
+set format y "%.1f"
+set format y2 "%.1f"
 set output '/home/ghz/shelly/plots/main_outlet_current.png'
 plot	dat_f_pp001 using 1:5 title 'main outlets current (A)' with lines lw 2 linecolor rgb C_03, \
 	dat_f_pp004 using 1:5 title 'washing machine current (A)' with lines lw 1 linecolor rgb C_04, \
@@ -126,8 +126,8 @@ plot	dat_f_pp000 using 1:9 title 'apt lights freq bezier smoothed (Hz)' with lin
 set title "Daily Energy Use"
 set ylabel "(kWh)"
 set y2label "(kWh)"
-set format y "%.2f"
-set format y2 "%.2f"
+set format y "%.1f"
+set format y2 "%.1f"
 set format x "%F"
 set yrange ["0":]
 set xrange [:] noextend
