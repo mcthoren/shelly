@@ -59,9 +59,8 @@ set format y2 "%.2f"
 set ylabel "(A)"
 set y2label "(A)"
 set output '/home/ghz/shelly/plots/light_current.png'
-plot	dat_f_pp006 using 1:5 title 'bathroom outlets current (A)' with lines lw 2 linecolor rgb C_08, \
-	dat_f_pp000 using 1:5 title 'apt lights current (A)' with lines lw 2 linecolor rgb C_09, \
-	dat_f_pp005 using 1:5 title 'bathroom razor current (A)' with lines lw 2 linecolor rgb C_01, \
+plot	dat_f_pp000 using 1:5 title 'apt lights current (A)' with lines lw 2 linecolor rgb C_09, \
+	dat_f_pp005 using 1:5 title 'bathroom fan current (A)' with lines lw 2 linecolor rgb C_01, \
 	dat_f_pl using 1:7 title 'plant light current (A)' with lines lw 2 linecolor rgb C_03, \
 	dat_f_pp003 using 1:5 title 'kitchen outlets - sink side current (A)' with lines lw 2 linecolor rgb C_07, \
 	dat_f_bk using 1:7 title 'balcony lights current (A)' with lines lw 2 linecolor rgb C_04
@@ -72,7 +71,8 @@ set format y2 "%.1f"
 set output '/home/ghz/shelly/plots/main_outlet_current.png'
 plot	dat_f_pp001 using 1:5 title 'main outlets current (A)' with lines lw 2 linecolor rgb C_03, \
 	dat_f_pp004 using 1:5 title 'washing machine current (A)' with lines lw 1 linecolor rgb C_04, \
-	dat_f_pp002 using 1:5 title 'kitchen outlets - window side current (A)' with lines lw 2 linecolor rgb C_06
+	dat_f_pp002 using 1:5 title 'kitchen outlets - window side current (A)' with lines lw 2 linecolor rgb C_06, \
+	dat_f_pp006 using 1:5 title 'bathroom outlets current (A)' with lines lw 2 linecolor rgb C_01
 
 set title "Total Current over the last \\~48h"
 set output '/home/ghz/shelly/plots/total_current.png'
@@ -84,10 +84,9 @@ set y2label "(W)"
 set format y "%.1f"
 set format y2 "%.1f"
 set output '/home/ghz/shelly/plots/light_power.png'
-plot	dat_f_pp006 using 1:7 title 'bathroom outlets power (W)' with lines lw 2 linecolor rgb C_08, \
-	dat_f_pp000 using 1:7 title 'apt lights power (W)' with lines lw 2 linecolor rgb C_09, \
+plot	dat_f_pp000 using 1:7 title 'apt lights power (W)' with lines lw 2 linecolor rgb C_09, \
 	dat_f_pp003 using 1:7 title 'kitchen outlets - sink side power (W)' with lines lw 2 linecolor rgb C_07, \
-	dat_f_pp005 using 1:7 title 'bathroom razor power (W)' with lines lw 2 linecolor rgb C_01, \
+	dat_f_pp005 using 1:7 title 'bathroom fan power (W)' with lines lw 2 linecolor rgb C_01, \
 	dat_f_pl using 1:3 title 'plant light power (W)' with lines lw 2 linecolor rgb C_03, \
 	dat_f_bk using 1:3 title 'balcony lights power (W)' with lines lw 2 linecolor rgb C_04
 
@@ -95,7 +94,8 @@ set title "High Current Circuit Power over the last \\~48h"
 set output '/home/ghz/shelly/plots/main_outlet_power.png'
 plot	dat_f_pp001 using 1:7 title 'main outlets power (W)' with lines lw 2 linecolor rgb C_03, \
 	dat_f_pp004 using 1:7 title 'washing machine power (W)' with lines lw 1 linecolor rgb C_04, \
-	dat_f_pp002 using 1:7 title 'kitchen outlets - window side power (W)' with lines lw 2 linecolor rgb C_06
+	dat_f_pp002 using 1:7 title 'kitchen outlets - window side power (W)' with lines lw 2 linecolor rgb C_06, \
+	dat_f_pp006 using 1:7 title 'bathroom outlets power (W)' with lines lw 2 linecolor rgb C_01
 
 set title "Total Power over the last \\~48h"
 set output '/home/ghz/shelly/plots/total_power.png'
