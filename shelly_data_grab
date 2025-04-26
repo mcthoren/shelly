@@ -71,7 +71,7 @@ sed -ie "s/^${TSD}.*$/${TSD} ${TOT}/" "${TOT_E}"
 
 gnuplot /home/ghz/shelly/shelly.gnuplot
 
-/usr/local/bin/rsync -ur --delete --timeout=50 \
+/usr/local/bin/rsync -6ur --delete --timeout=50 \
 	--exclude .git --exclude shelly.lock -e 'ssh -q' \
 	/home/ghz/shelly/ wxs:/wx0/shelly/
 
