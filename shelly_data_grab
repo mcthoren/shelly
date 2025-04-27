@@ -61,7 +61,6 @@ done
 # create the file if it doesn't exist. this makes first runs smoother even if it is a bit of extra work.
 [ -f "${TOT_E}" ] || touch "${TOT_E}"
 grep -q "${TSD}" "${TOT_E}" || echo "${TSD}" >> "${TOT_E}"
-tail -45 "${TOT_E}" > "${TOT_E45}"
 
 # the sum total energy from instantaneous minute measurements should give us
 # a decent approximation of energy usage in watt * minutes.
@@ -70,6 +69,8 @@ TOT="$(awk 'BEGIN {p_tot = 0} {p_tot += $2} END {print p_tot / 60 / 1000, "kWh"}
 
 # update as we go so we can watch our usage climb per day
 sed -e "s/^${TSD}.*$/${TSD} ${TOT}/" -i "${TOT_E}"
+
+tail -45 "${TOT_E}" > "${TOT_E45}"
 
 gnuplot /home/ghz/shelly/shelly.gnuplot
 
