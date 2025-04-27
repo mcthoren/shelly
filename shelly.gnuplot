@@ -23,6 +23,7 @@ dat_f_pp006='/home/ghz/shelly/data/pprobe-006.48_hours'
 dat_f_total='/home/ghz/shelly/data/pprobe-total.48_hours'
 dat_f_total_e='/home/ghz/shelly/data/total_energy'
 dat_f_total_e_45='/home/ghz/shelly/data/total_energy.45_days'
+dat_f_total_adem='/home/ghz/shelly/data/total_avg_day_energy_per_month'
 
 C_00="#00ff00"
 C_01="#00ffc0"
@@ -142,3 +143,8 @@ plot dat_f_total_e using 1:2 title 'total daily energy use (kWh)' with boxes lin
 set title "Daily Energy Use for the last 45 Days"
 set output '/home/ghz/shelly/plots/total_e_day_45.png'
 plot dat_f_total_e_45 using 1:2 title 'total daily energy use (kWh)' with boxes linecolor rgb "#00c0c0"
+
+set timefmt "%Y-%m"
+set title "Daily Average Energy Use per Month"
+set output '/home/ghz/shelly/plots/total_adem.png'
+plot dat_f_total_adem using 1:2 title 'average daily energy use per month (kWh)' with boxes linecolor rgb C_06

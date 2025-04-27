@@ -6,9 +6,11 @@ WT_DIR='/home/ghz/repos/weather_tools'
 DAT_DIR='/home/ghz/shelly/data'
 TSY="$(date -u "+%Y")"
 TSD="$(date -u "+%F")"
+TSM="$(date -u "+%Y-%m")"
 DEST="/home/ghz/shelly/data/${TSY}"
 TOT_E="${DAT_DIR}/total_energy"
 TOT_E45="${DAT_DIR}/total_energy.45_days"
+TOT_AVG_D_E_M="${DAT_DIR}/total_avg_day_energy_per_month"
 
 [ -e "${LOCK}" ] && {
         echo "$0: lock exists" | logger
@@ -60,6 +62,7 @@ done
 
 # create the file if it doesn't exist. this makes first runs smoother even if it is a bit of extra work.
 [ -f "${TOT_E}" ] || touch "${TOT_E}"
+[ -f "${TOT_AVG_D_E_M}" ] || touch "${TOT_AVG_D_E_M}"
 grep -q "${TSD}" "${TOT_E}" || echo "${TSD}" >> "${TOT_E}"
 
 # the sum total energy from instantaneous minute measurements should give us
@@ -67,8 +70,13 @@ grep -q "${TSD}" "${TOT_E}" || echo "${TSD}" >> "${TOT_E}"
 # devide by 60 to give us watt * hour and then by 1000 to give us kWh
 TOT="$(awk 'BEGIN {p_tot = 0} {p_tot += $2} END {print p_tot / 60 / 1000, "kWh"}' ${DEST}/pprobe-total.${TSD})"
 
+TOT_AEDM="$(grep "^${TSM}" "${TOT_E}" | awk 'BEGIN {p_tot = 0} {p_tot += $2} END {print p_tot/NR, "kWh/day"}')"
+
 # update as we go so we can watch our usage climb per day
 sed -e "s/^${TSD}.*$/${TSD} ${TOT}/" -i "${TOT_E}"
+
+# update monthly average as we go.
+sed -e "s+^${TSM}.*$+${TSM} ${TOT_AEDM}+" -i "${TOT_AVG_D_E_M}"
 
 tail -45 "${TOT_E}" > "${TOT_E45}"
 
