@@ -63,13 +63,17 @@ done
 # create the file if it doesn't exist. this makes first runs smoother even if it is a bit of extra work.
 [ -f "${TOT_E}" ] || touch "${TOT_E}"
 [ -f "${TOT_AVG_D_E_M}" ] || touch "${TOT_AVG_D_E_M}"
+
+# make sure our date tags exist for our sed to search and replace on
 grep -q "${TSD}" "${TOT_E}" || echo "${TSD}" >> "${TOT_E}"
+grep -q "${TSM}" "${TOT_AVG_D_E_M}" || echo "${TSM}" >> "${TOT_AVG_D_E_M}"
 
 # the sum total energy from instantaneous minute measurements should give us
 # a decent approximation of energy usage in watt * minutes.
 # devide by 60 to give us watt * hour and then by 1000 to give us kWh
 TOT="$(awk 'BEGIN {p_tot = 0} {p_tot += $2} END {print p_tot / 60 / 1000, "kWh"}' ${DEST}/pprobe-total.${TSD})"
 
+# update our total average daily energy usage for this month as we go
 TOT_AEDM="$(grep "^${TSM}" "${TOT_E}" | awk 'BEGIN {p_tot = 0} {p_tot += $2} END {print p_tot/NR, "kWh/day"}')"
 
 # update as we go so we can watch our usage climb per day
