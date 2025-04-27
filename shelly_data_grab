@@ -69,7 +69,7 @@ tail -45 "${TOT_E}" > "${TOT_E45}"
 TOT="$(awk 'BEGIN {p_tot = 0} {p_tot += $2} END {print p_tot / 60 / 1000, "kWh"}' ${DEST}/pprobe-total.${TSD})"
 
 # update as we go so we can watch our usage climb per day
-sed -ie "s/^${TSD}.*$/${TSD} ${TOT}/" "${TOT_E}"
+sed -e "s/^${TSD}.*$/${TSD} ${TOT}/" -i "${TOT_E}"
 
 gnuplot /home/ghz/shelly/shelly.gnuplot
 
