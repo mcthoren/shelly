@@ -8,6 +8,7 @@ TSY="$(date -u "+%Y")"
 TSD="$(date -u "+%F")"
 DEST="/home/ghz/shelly/data/${TSY}"
 TOT_E="${DAT_DIR}/total_energy"
+TOT_E45="${DAT_DIR}/total_energy.45_days"
 
 [ -e "${LOCK}" ] && {
         echo "$0: lock exists" | logger
@@ -60,6 +61,7 @@ done
 # create the file if it doesn't exist. this makes first runs smoother even if it is a bit of extra work.
 [ -f "${TOT_E}" ] || touch "${TOT_E}"
 grep -q "${TSD}" "${TOT_E}" || echo "${TSD}" >> "${TOT_E}"
+tail -45 "${TOT_E}" > "${TOT_E45}"
 
 # the sum total energy from instantaneous minute measurements should give us
 # a decent approximation of energy usage in watt * minutes.

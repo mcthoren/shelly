@@ -22,6 +22,7 @@ dat_f_pp005='/home/ghz/shelly/data/pprobe-005.48_hours'
 dat_f_pp006='/home/ghz/shelly/data/pprobe-006.48_hours'
 dat_f_total='/home/ghz/shelly/data/pprobe-total.48_hours'
 dat_f_total_e='/home/ghz/shelly/data/total_energy'
+dat_f_total_e_45='/home/ghz/shelly/data/total_energy.45_days'
 
 C_00="#00ff00"
 C_01="#00ffc0"
@@ -137,3 +138,7 @@ set ytics out
 set style fill solid 0.50 noborder
 set output '/home/ghz/shelly/plots/total_e_day.png'
 plot dat_f_total_e using 1:2 title 'total daily energy use (kWh)' with boxes linecolor rgb "#0000ff"
+
+set title "Daily Energy Use for the last 45 Days"
+set output '/home/ghz/shelly/plots/total_e_day_45.png'
+plot dat_f_total_e_45 using 1:2 title 'total daily energy use (kWh)' with boxes linecolor rgb "#00c0c0"
