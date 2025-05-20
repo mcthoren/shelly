@@ -11,8 +11,11 @@ set timefmt "%Y-%m-%dT%H:%M:%S%Z"
 set grid
 set term pngcairo size 1900, 512 font ",10"
 
-dat_f_pl='/home/ghz/shelly/data/plantlight.48_hours'
+dat_f_al='/home/ghz/shelly/data/algae.48_hours'
 dat_f_bk='/home/ghz/shelly/data/bklight.48_hours'
+dat_f_hf='/home/ghz/shelly/data/housefish.48_hours'
+dat_f_pl='/home/ghz/shelly/data/plantlight.48_hours'
+dat_f_sp='/home/ghz/shelly/data/springles.48_hours'
 dat_f_pp000='/home/ghz/shelly/data/pprobe-000.48_hours'
 dat_f_pp001='/home/ghz/shelly/data/pprobe-001.48_hours'
 dat_f_pp002='/home/ghz/shelly/data/pprobe-002.48_hours'
@@ -42,8 +45,11 @@ set format y2 "%.1f"
 set ylabel "(VAC)"
 set y2label "(VAC)"
 set output '/home/ghz/shelly/plots/light_line_voltage.png'
-plot	dat_f_pl using 1:5 title 'plant light voltage (VAC)' with lines lw 3 linecolor rgb C_05, \
-	dat_f_bk using 1:5 title 'balcony lights voltage (VAC)' with lines lw 1 linecolor rgb C_06
+plot	dat_f_al using 1:5 title 'bath fan voltage (VAC)' with lines lw 1 linecolor rgb C_00, \
+	dat_f_bk using 1:5 title 'balcony lights voltage (VAC)' with lines lw 1 linecolor rgb C_01, \
+	dat_f_hf using 1:5 title 'air compressor voltage (VAC)' with lines lw 1 linecolor rgb C_02, \
+	dat_f_pl using 1:5 title 'plant light voltage (VAC)' with lines lw 1 linecolor rgb C_05, \
+	dat_f_sp using 1:5 title 'bug zapper voltage (VAC)' with lines lw 1 linecolor rgb C_06
 
 set title "Line Voltage per Circuit at the Breaker over the last \\~48h"
 set output '/home/ghz/shelly/plots/pprobe_line_voltage.png'

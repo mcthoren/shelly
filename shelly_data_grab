@@ -28,17 +28,13 @@ touch "${LOCK}"
 
 [ -d "${DEST}" ] || mkdir -p "${DEST}"
 
-(
-	date -u "+%FT%T%Z"
-	wdl "http://plantlight/rpc/Shelly.GetStatus" \
-	| jq | egrep 'tC|apower|voltage|current'
-) | xargs echo >> "${DEST}/plantlight.${TSD}"
-
-(
-	date -u "+%FT%T%Z"
-	wdl "http://bklight/rpc/Shelly.GetStatus" \
-	| jq | egrep 'tC|apower|voltage|current'
-) | xargs echo >> "${DEST}/bklight.${TSD}"
+for _thing in plantlight bklight springles housefish algae; do
+	(
+		date -u "+%FT%T%Z"
+		wdl "http://${_thing}/rpc/Shelly.GetStatus" \
+		| jq | egrep 'tC|apower|voltage|current'
+	) | xargs echo >> "${DEST}/${_thing}.${TSD}"
+done
 
 for i in 0 1 2 3 4 5 6; do
 	(
@@ -56,9 +52,9 @@ done
 	awk 'BEGIN {p_sum = 0; i_sum = 0} {i_sum += $5; p_sum += $7} END {print p_sum,"W\t", i_sum, "A"}'
 ) | paste - - >> "${DEST}/pprobe-total.${TSD}"
 
-"${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f plantlight
-"${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f bklight
-"${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f pprobe-total
+for _ding in plantlight bklight springles housefish algae pprobe-total; do
+	"${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f "${_ding}"
+done
 
 # create the file if it doesn't exist. this makes first runs smoother even if it is a bit of extra work.
 [ -f "${TOT_E}" ] || touch "${TOT_E}"
