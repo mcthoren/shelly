@@ -113,8 +113,10 @@ set title "End Device Temp over the last \\~48h"
 set ylabel "(°C)"
 set y2label "(°C)"
 set output '/home/ghz/shelly/plots/light_shelly_temp.png'
-plot	dat_f_pl using 1:9 title 'plant light shelly temp (°C)' with lines lw 2 linecolor rgb "#0000bb", \
-	dat_f_bk using 1:9 title 'balcony lights shelly temp (°C)' with lines lw 2 linecolor rgb "#00aaaa"
+plot	dat_f_pl using 1:9 title 'plant light shelly temp (°C)' with lines lw 2 linecolor rgb C_00, \
+	dat_f_bk using 1:9 title 'balcony lights shelly temp (°C)' with lines lw 2 linecolor rgb C_01, \
+	dat_f_al using 1:11 title 'bath fan shelly temp (°C)' with lines lw 2 linecolor rgb C_02, \
+	dat_f_sp using 1:11 title 'bug zapper shelly temp (°C)' with lines lw 2 linecolor rgb C_03
 
 set title "Line Frequency over the last \\~48h"
 set ylabel "(Hz)"
@@ -130,6 +132,8 @@ plot	dat_f_pp000 using 1:9 title 'apt lights freq bezier smoothed (Hz)' with lin
 	dat_f_pp004 using 1:9 title 'washing machine freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
 	dat_f_pp005 using 1:9 title 'bathroom razor freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
 	dat_f_pp006 using 1:9 title 'bathroom outlets freq bezier smoothed (Hz)' with lines lw 2 smooth bezier
+# 	dat_f_al using 1:7 title 'bath fan freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
+# 	dat_f_sp using 1:7 title 'bug zapper freq bezier smoothed (Hz)' with lines lw 2 smooth bezier
 
 set title "Daily Energy Use"
 set ylabel "(kWh)"

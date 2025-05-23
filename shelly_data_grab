@@ -32,7 +32,7 @@ for _thing in plantlight bklight springles housefish algae; do
 	(
 		date -u "+%FT%T%Z"
 		wdl "http://${_thing}/rpc/Shelly.GetStatus" \
-		| jq | egrep 'tC|apower|voltage|current'
+		| jq | egrep 'tC|apower|voltage|current|freq'
 	) | xargs echo >> "${DEST}/${_thing}.${TSD}"
 done
 
