@@ -125,15 +125,15 @@ set format y "%.2f"
 set format y2 "%.2f"
 # set yrange ["49.5":"50.5"]
 set output '/home/ghz/shelly/plots/light_shelly_freq.png'
-plot	dat_f_pp000 using 1:9 title 'apt lights freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
-	dat_f_pp001 using 1:9 title 'main outlets freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
-	dat_f_pp002 using 1:9 title 'kitchen outlets - window side freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
-	dat_f_pp003 using 1:9 title 'kitchen outlets - sink side freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
-	dat_f_pp004 using 1:9 title 'washing machine freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
-	dat_f_pp005 using 1:9 title 'bathroom razor freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
-	dat_f_pp006 using 1:9 title 'bathroom outlets freq bezier smoothed (Hz)' with lines lw 2 smooth bezier
-# 	dat_f_al using 1:7 title 'bath fan freq bezier smoothed (Hz)' with lines lw 2 smooth bezier, \
-# 	dat_f_sp using 1:7 title 'bug zapper freq bezier smoothed (Hz)' with lines lw 2 smooth bezier
+plot	dat_f_pp000 using 1:9 title 'apt lights freq bezier smoothed (Hz)' with lines lw 2 lc rgb C_00 smooth bezier, \
+	dat_f_pp001 using 1:9 title 'main outlets freq bezier smoothed (Hz)' with lines lw 2 lc rgb C_01 smooth bezier, \
+	dat_f_pp002 using 1:9 title 'kitchen outlets - window side freq bezier smoothed (Hz)' with lines lw 2 lc rgb C_02 smooth bezier, \
+	dat_f_pp003 using 1:9 title 'kitchen outlets - sink side freq bezier smoothed (Hz)' with lines lw 2 lc rgb C_03 smooth bezier, \
+	dat_f_pp004 using 1:9 title 'washing machine freq bezier smoothed (Hz)' with lines lw 2 lc rgb C_04 smooth bezier, \
+	dat_f_pp005 using 1:9 title 'bathroom razor freq bezier smoothed (Hz)' with lines lw 2 lc rgb C_05 smooth bezier, \
+	dat_f_pp006 using 1:9 title 'bathroom outlets freq bezier smoothed (Hz)' with lines lw 2 lc rgb C_06 smooth bezier, \
+	dat_f_al using 1:7 title 'bath fan freq bezier smoothed (Hz)' with lines lw 2 lc rgb C_07 smooth bezier, \
+	dat_f_sp using 1:7 title 'bug zapper freq bezier smoothed (Hz)' with lines lw 2 lc rgb C_08 smooth bezier
 
 set title "Daily Energy Use"
 set ylabel "(kWh)"
