@@ -141,20 +141,44 @@ set y2label "(kWh)"
 set format y "%.1f"
 set format y2 "%.1f"
 set format x "%F"
-set yrange ["0":]
 set xrange [:] noextend
 set xtics auto out
 set grid mxtics
 set ytics out
 set style fill solid 0.50 noborder
+
+# set link y2 seems to break yrange autoscale extending to the next tic in recentish gnuplots.
+# i have spent hours trying things that looked better than this.
+# in the end i only have this. so use this.
+unset link y2
+unset y2tics
+set output "| cat > /dev/null"
+plot dat_f_total_e using 1:2
+set y2range [GPVAL_Y_MIN:GPVAL_Y_MAX]
+set y2tics
+
 set output '/home/ghz/shelly/plots/total_e_day.png'
 plot dat_f_total_e using 1:2 title 'total daily energy use (kWh)' with boxes linecolor rgb "#0000ff"
+
+unset y2tics
+set output "| cat > /dev/null"
+plot dat_f_total_e_45 using 1:2
+set y2range [GPVAL_Y_MIN:GPVAL_Y_MAX]
+set y2tics
 
 set title "Daily Energy Use for the last 45 Days"
 set output '/home/ghz/shelly/plots/total_e_day_45.png'
 plot dat_f_total_e_45 using 1:2 title 'total daily energy use (kWh)' with boxes linecolor rgb "#00c0c0"
 
 set timefmt "%Y-%m"
+set format x "%Y-%m"
+
+unset y2tics
+set output "| cat > /dev/null"
+plot dat_f_total_adem using 1:2
+set y2range [GPVAL_Y_MIN:GPVAL_Y_MAX]
+set y2tics
+
 set title "Daily Average Energy Use per Month"
 set output '/home/ghz/shelly/plots/total_adem.png'
 plot dat_f_total_adem using 1:2 title 'average daily energy use per month (kWh)' with boxes linecolor rgb C_06
