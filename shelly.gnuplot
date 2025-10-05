@@ -45,7 +45,7 @@ set format y2 "%.1f"
 set ylabel "(VAC)"
 set y2label "(VAC)"
 set output '/home/ghz/shelly/plots/light_line_voltage.png'
-plot	dat_f_al using 1:5 title 'bath fan voltage (VAC)' with lines lw 1 linecolor rgb C_00, \
+plot	dat_f_al using 1:5 title 'bath aux voltage (VAC)' with lines lw 1 linecolor rgb C_00, \
 	dat_f_bk using 1:5 title 'balcony lights voltage (VAC)' with lines lw 1 linecolor rgb C_01, \
 	dat_f_hf using 1:5 title 'air compressor voltage (VAC)' with lines lw 1 linecolor rgb C_02, \
 	dat_f_pl using 1:5 title 'plant light voltage (VAC)' with lines lw 1 linecolor rgb C_05, \
@@ -68,7 +68,7 @@ set ylabel "(A)"
 set y2label "(A)"
 set output '/home/ghz/shelly/plots/light_current.png'
 plot	dat_f_pp000 using 1:5 title 'apt lights current (A)' with lines lw 2 linecolor rgb C_09, \
-	dat_f_pp005 using 1:5 title 'bathroom fan current (A)' with lines lw 2 linecolor rgb C_01, \
+	dat_f_pp005 using 1:5 title 'bath aux current (A)' with lines lw 2 linecolor rgb C_01, \
 	dat_f_pl using 1:7 title 'plant light current (A)' with lines lw 2 linecolor rgb C_03, \
 	dat_f_bk using 1:7 title 'balcony lights current (A)' with lines lw 2 linecolor rgb C_04
 
@@ -93,7 +93,7 @@ set format y "%.1f"
 set format y2 "%.1f"
 set output '/home/ghz/shelly/plots/light_power.png'
 plot	dat_f_pp000 using 1:7 title 'apt lights power (W)' with lines lw 2 linecolor rgb C_09, \
-	dat_f_pp005 using 1:7 title 'bathroom fan power (W)' with lines lw 2 linecolor rgb C_01, \
+	dat_f_pp005 using 1:7 title 'bath aux power (W)' with lines lw 2 linecolor rgb C_01, \
 	dat_f_pl using 1:3 title 'plant light power (W)' with lines lw 2 linecolor rgb C_03, \
 	dat_f_bk using 1:3 title 'balcony lights power (W)' with lines lw 2 linecolor rgb C_04
 
