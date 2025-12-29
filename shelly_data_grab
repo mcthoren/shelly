@@ -28,7 +28,7 @@ touch "${LOCK}"
 
 [ -d "${DEST}" ] || mkdir -p "${DEST}"
 
-for _thing in plantlight bklight springles housefish algae; do
+for _thing in plantlight bklight springles housefish algae pinky hippity bob pablo; do
 	(
 		date -u "+%FT%T%Z"
 		wdl "http://${_thing}/rpc/Shelly.GetStatus" \
@@ -52,7 +52,7 @@ done
 	awk 'BEGIN {p_sum = 0; i_sum = 0} {i_sum += $5; p_sum += $7} END {print p_sum,"W\t", i_sum, "A"}'
 ) | paste - - >> "${DEST}/pprobe-total.${TSD}"
 
-for _ding in plantlight bklight springles housefish algae pprobe-total; do
+for _ding in plantlight bklight springles housefish algae pprobe-total pinky hippity bob pablo; do
 	"${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f "${_ding}"
 done
 
