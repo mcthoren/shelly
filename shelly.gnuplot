@@ -9,7 +9,7 @@ set xdata time
 set format x "%F\n%TZ"
 set timefmt "%Y-%m-%dT%H:%M:%S%Z"
 set grid
-set term pngcairo size 1900, 512 font ",10"
+set term svg size 1900, 512 font ",12" background '0xffffff'
 
 dat_f_al='/home/ghz/shelly/data/algae.48_hours'
 dat_f_bk='/home/ghz/shelly/data/bklight.48_hours'
@@ -44,7 +44,7 @@ set format y "%.1f"
 set format y2 "%.1f"
 set ylabel "(VAC)"
 set y2label "(VAC)"
-set output '/home/ghz/shelly/plots/light_line_voltage.png'
+set output '/home/ghz/shelly/plots/light_line_voltage.svg'
 plot	dat_f_al using 1:5 title 'bath aux voltage (VAC)' with lines lw 1 linecolor rgb C_00, \
 	dat_f_bk using 1:5 title 'balcony lights voltage (VAC)' with lines lw 1 linecolor rgb C_01, \
 	dat_f_hf using 1:5 title 'air compressor voltage (VAC)' with lines lw 1 linecolor rgb C_02, \
@@ -52,7 +52,7 @@ plot	dat_f_al using 1:5 title 'bath aux voltage (VAC)' with lines lw 1 linecolor
 	dat_f_sp using 1:5 title 'bug zapper voltage (VAC)' with lines lw 1 linecolor rgb C_06
 
 set title "Line Voltage per Circuit at the Breaker over the last \\~48h"
-set output '/home/ghz/shelly/plots/pprobe_line_voltage.png'
+set output '/home/ghz/shelly/plots/pprobe_line_voltage.svg'
 plot dat_f_pp000 using 1:3 title 'apt lights voltage (VAC)' with lines lw 1 linecolor rgb C_00, \
 	dat_f_pp001 using 1:3 title 'main outlets voltage (VAC)' with lines lw 1 linecolor rgb C_01, \
 	dat_f_pp002 using 1:3 title 'kitchen outlets - window side voltage (VAC)' with lines lw 1 linecolor rgb C_02, \
@@ -66,7 +66,7 @@ set format y "%.2f"
 set format y2 "%.2f"
 set ylabel "(A)"
 set y2label "(A)"
-set output '/home/ghz/shelly/plots/light_current.png'
+set output '/home/ghz/shelly/plots/light_current.svg'
 plot	dat_f_pp000 using 1:5 title 'apt lights current (A)' with lines lw 2 linecolor rgb C_09, \
 	dat_f_pp005 using 1:5 title 'bath aux current (A)' with lines lw 2 linecolor rgb C_01, \
 	dat_f_pl using 1:7 title 'plant light current (A)' with lines lw 2 linecolor rgb C_03, \
@@ -75,7 +75,7 @@ plot	dat_f_pp000 using 1:5 title 'apt lights current (A)' with lines lw 2 lineco
 set title "High Current Circuit Current over the last \\~48h"
 set format y "%.1f"
 set format y2 "%.1f"
-set output '/home/ghz/shelly/plots/main_outlet_current.png'
+set output '/home/ghz/shelly/plots/main_outlet_current.svg'
 plot	dat_f_pp001 using 1:5 title 'main outlets current (A)' with lines lw 2 linecolor rgb C_03, \
 	dat_f_pp004 using 1:5 title 'washing machine current (A)' with lines lw 1 linecolor rgb C_04, \
 	dat_f_pp002 using 1:5 title 'kitchen outlets - window side current (A)' with lines lw 2 linecolor rgb C_06, \
@@ -91,14 +91,14 @@ set ylabel "(W)"
 set y2label "(W)"
 set format y "%.1f"
 set format y2 "%.1f"
-set output '/home/ghz/shelly/plots/light_power.png'
+set output '/home/ghz/shelly/plots/light_power.svg'
 plot	dat_f_pp000 using 1:7 title 'apt lights power (W)' with lines lw 2 linecolor rgb C_09, \
 	dat_f_pp005 using 1:7 title 'bath aux power (W)' with lines lw 2 linecolor rgb C_01, \
 	dat_f_pl using 1:3 title 'plant light power (W)' with lines lw 2 linecolor rgb C_03, \
 	dat_f_bk using 1:3 title 'balcony lights power (W)' with lines lw 2 linecolor rgb C_04
 
 set title "High Current Circuit Power over the last \\~48h"
-set output '/home/ghz/shelly/plots/main_outlet_power.png'
+set output '/home/ghz/shelly/plots/main_outlet_power.svg'
 plot	dat_f_pp001 using 1:7 title 'main outlets power (W)' with lines lw 2 linecolor rgb C_03, \
 	dat_f_pp004 using 1:7 title 'washing machine power (W)' with lines lw 1 linecolor rgb C_04, \
 	dat_f_pp002 using 1:7 title 'kitchen outlets - window side power (W)' with lines lw 2 linecolor rgb C_06, \
@@ -106,13 +106,13 @@ plot	dat_f_pp001 using 1:7 title 'main outlets power (W)' with lines lw 2 lineco
 	dat_f_pp006 using 1:7 title 'bathroom outlets power (W)' with lines lw 2 linecolor rgb C_01
 
 set title "Total Power over the last \\~48h"
-set output '/home/ghz/shelly/plots/total_power.png'
+set output '/home/ghz/shelly/plots/total_power.svg'
 plot	dat_f_total using 1:2 title 'total power (W)' with lines lw 1 linecolor rgb C_03
 
 set title "End Device Temp over the last \\~48h"
 set ylabel "(°C)"
 set y2label "(°C)"
-set output '/home/ghz/shelly/plots/light_shelly_temp.png'
+set output '/home/ghz/shelly/plots/light_shelly_temp.svg'
 plot	dat_f_pl using 1:9 title 'plant light shelly temp (°C)' with lines lw 2 linecolor rgb C_00, \
 	dat_f_bk using 1:9 title 'balcony lights shelly temp (°C)' with lines lw 2 linecolor rgb C_01, \
 	dat_f_al using 1:11 title 'bath fan shelly temp (°C)' with lines lw 2 linecolor rgb C_02, \
@@ -124,7 +124,7 @@ set y2label "(Hz)"
 set format y "%.2f"
 set format y2 "%.2f"
 # set yrange ["49.5":"50.5"]
-set output '/home/ghz/shelly/plots/light_shelly_freq.png'
+set output '/home/ghz/shelly/plots/light_shelly_freq.svg'
 plot	dat_f_pp000 using 1:9 title 'apt lights freq bezier smoothed (Hz)' with lines lw 2 lc rgb C_00 smooth bezier, \
 	dat_f_pp001 using 1:9 title 'main outlets freq bezier smoothed (Hz)' with lines lw 2 lc rgb C_01 smooth bezier, \
 	dat_f_pp002 using 1:9 title 'kitchen outlets - window side freq bezier smoothed (Hz)' with lines lw 2 lc rgb C_02 smooth bezier, \
@@ -157,7 +157,7 @@ plot dat_f_total_e using 1:2
 set y2range [GPVAL_Y_MIN:GPVAL_Y_MAX]
 set y2tics
 
-set output '/home/ghz/shelly/plots/total_e_day.png'
+set output '/home/ghz/shelly/plots/total_e_day.svg'
 plot dat_f_total_e using 1:2 title 'total daily energy use (kWh)' with boxes linecolor rgb "#0000ff"
 
 unset y2tics
@@ -167,7 +167,7 @@ set y2range [GPVAL_Y_MIN:GPVAL_Y_MAX]
 set y2tics
 
 set title "Daily Energy Use for the last 45 Days"
-set output '/home/ghz/shelly/plots/total_e_day_45.png'
+set output '/home/ghz/shelly/plots/total_e_day_45.svg'
 plot dat_f_total_e_45 using 1:2 title 'total daily energy use (kWh)' with boxes linecolor rgb "#00c0c0"
 
 set timefmt "%Y-%m"
@@ -180,5 +180,5 @@ set y2range [GPVAL_Y_MIN:GPVAL_Y_MAX]
 set y2tics
 
 set title "Daily Average Energy Use per Month"
-set output '/home/ghz/shelly/plots/total_adem.png'
+set output '/home/ghz/shelly/plots/total_adem.svg'
 plot dat_f_total_adem using 1:2 title 'average daily energy use per month (kWh)' with boxes linecolor rgb C_06
