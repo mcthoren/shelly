@@ -83,7 +83,7 @@ plot	dat_f_pp001 using 1:5 title 'main outlets current (A)' with lines lw 2 line
 	dat_f_pp006 using 1:5 title 'bathroom outlets current (A)' with lines lw 2 linecolor rgb C_01
 
 set title "Total Current over the last \\~48h"
-set output '/home/ghz/shelly/plots/total_current.png'
+set output '/home/ghz/shelly/plots/total_current.svg'
 plot	dat_f_total using 1:4 title 'total current (A)' with lines lw 1 linecolor rgb C_06
 
 set title "Low Current Circuit Power over the last \\~48h"
