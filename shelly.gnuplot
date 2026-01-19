@@ -9,13 +9,17 @@ set xdata time
 set format x "%F\n%TZ"
 set timefmt "%Y-%m-%dT%H:%M:%S%Z"
 set grid
-set term svg size 1900, 600 font ",12" background '0xffffff'
+set term svg size 1900, 600 font ",13" background '0xffffff'
 
 dat_f_al='/home/ghz/shelly/data/algae.48_hours'
 dat_f_bk='/home/ghz/shelly/data/bklight.48_hours'
 dat_f_hf='/home/ghz/shelly/data/housefish.48_hours'
 dat_f_pl='/home/ghz/shelly/data/plantlight.48_hours'
 dat_f_sp='/home/ghz/shelly/data/springles.48_hours'
+dat_f_pinky='/home/ghz/shelly/data/pinky.48_hours'
+dat_f_hippity='/home/ghz/shelly/data/hippity.48_hours'
+dat_f_bob='/home/ghz/shelly/data/bob.48_hours'
+dat_f_pablo='/home/ghz/shelly/data/pablo.48_hours'
 dat_f_pp000='/home/ghz/shelly/data/pprobe-000.48_hours'
 dat_f_pp001='/home/ghz/shelly/data/pprobe-001.48_hours'
 dat_f_pp002='/home/ghz/shelly/data/pprobe-002.48_hours'
@@ -45,11 +49,16 @@ set format y2 "%.1f"
 set ylabel "(VAC)"
 set y2label "(VAC)"
 set output '/home/ghz/shelly/plots/light_line_voltage.svg'
-plot	dat_f_al using 1:5 title 'bath aux voltage (VAC)' with lines lw 1 linecolor rgb C_00, \
-	dat_f_bk using 1:5 title 'balcony lights voltage (VAC)' with lines lw 1 linecolor rgb C_01, \
+plot \
+	dat_f_hippity using 1:5 title 'globe theater voltage (VAC)' with lines lw 1 linecolor rgb C_09, \
 	dat_f_hf using 1:5 title 'air compressor voltage (VAC)' with lines lw 1 linecolor rgb C_02, \
 	dat_f_pl using 1:5 title 'plant light voltage (VAC)' with lines lw 1 linecolor rgb C_05, \
-	dat_f_sp using 1:5 title 'bug zapper voltage (VAC)' with lines lw 1 linecolor rgb C_06
+	dat_f_sp using 1:5 title 'bug zapper voltage (VAC)' with lines lw 1 linecolor rgb C_06, \
+	dat_f_pinky using 1:5 title 'village lantern voltage (VAC)' with lines lw 1 linecolor rgb C_07, \
+	dat_f_bob using 1:5 title 'bedroom plant lights voltage (VAC)' with lines lw 1 linecolor rgb C_03, \
+	dat_f_al using 1:5 title 'bath aux voltage (VAC)' with lines lw 1 linecolor rgb C_00, \
+	dat_f_bk using 1:5 title 'balcony lights voltage (VAC)' with lines lw 1 linecolor rgb C_01, \
+	dat_f_pablo using 1:5 title 'vine lights voltage (VAC)' with lines lw 1 linecolor rgb C_04
 
 set title "Line Voltage per Circuit at the Breaker over the last \\~48h"
 set output '/home/ghz/shelly/plots/pprobe_line_voltage.svg'
