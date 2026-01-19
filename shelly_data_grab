@@ -32,7 +32,8 @@ for _thing in plantlight bklight springles housefish algae pinky hippity bob pab
 	(
 		date -u "+%FT%T%Z"
 		wdl "http://${_thing}/rpc/Shelly.GetStatus" \
-		| jq | egrep 'tC|apower|voltage|current|freq'
+		| jq | egrep 'tC|apower|voltage|current|freq' \
+		| egrep -v 'out_of_range'
 	) | xargs echo >> "${DEST}/${_thing}.${TSD}"
 done
 
@@ -40,7 +41,8 @@ for i in 0 1 2 3 4 5 6; do
 	(
 		date -u "+%FT%T%Z"
 		wdl "http://pprobe-00${i}/rpc/Shelly.GetStatus" \
-		| jq | egrep 'apower|voltage|current|freq'
+		| jq | egrep 'apower|voltage|current|freq' \
+		| egrep -v 'out_of_range'
 	) | xargs echo >> "${DEST}/pprobe-00${i}.${TSD}"
 
 	"${WT_DIR}/grab_n_hours" -n 48 -d "${DAT_DIR}" -f "pprobe-00${i}"
