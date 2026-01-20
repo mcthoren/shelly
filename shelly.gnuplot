@@ -128,7 +128,7 @@ plot	dat_f_pl using 1:9 title 'plant light shelly temp (°C)' with lines lw 2 li
 	dat_f_pinky using 1:11 title 'village lantern shelly temp (°C)' with lines lw 2 linecolor rgb C_07, \
 	dat_f_bob using 1:11 title 'bedroom plant lights shelly temp (°C)' with lines lw 2 linecolor rgb C_05, \
 	dat_f_hippity using 1:11 title 'globe theater shelly temp (°C)' with lines lw 2 linecolor rgb C_09, \
-	dat_f_pablo using 1:11 title 'vine lights shelly temp (°C)' with lines lw 2 linecolor rgb C_04, \
+	dat_f_pablo using 1:9 title 'vine lights shelly temp (°C)' with lines lw 2 linecolor rgb C_04, \
 	dat_f_sp using 1:11 title 'bug zapper shelly temp (°C)' with lines lw 2 linecolor rgb C_03
 
 set title "Line Frequency over the last \\~48h"
